@@ -120,9 +120,8 @@ class SoapClient extends \SoapClient implements Log\LoggerAwareInterface
 
             $newRequest = $newDom->saveXML();
 
-            $newRequest = str_replace('<ns1:', '<', $newRequest)
-              .str_replace('</ns1:', '</', $newRequest);
-            //
+            $newRequest = str_replace('<ns1:', '<', $newRequest);
+            $newRequest = str_replace('</ns1:', '</', $newRequest);
         }
 
         unset($processor, $xslt, $dom, $transform);
