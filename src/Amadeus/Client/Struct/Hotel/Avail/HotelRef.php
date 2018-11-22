@@ -99,6 +99,6 @@ class HotelRef
         $this->HotelCodeContext = $ref->codeContext;
         $this->HotelCode = $ref->hotelCode;
         $this->HotelName = $ref->name;
-        $this->BrandCode = $ref->bandCode;
+        $this->BrandCode = $ref->brandCode;
     }
 }

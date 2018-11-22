@@ -22,13 +22,13 @@
 
 namespace Test\Amadeus\Client\Struct\Hotel;
 
-use Amadeus\Client\RequestOptions\Hotel\MultiSingleAvail\Criteria;
-use Amadeus\Client\RequestOptions\Hotel\MultiSingleAvail\Guest;
-use Amadeus\Client\RequestOptions\Hotel\MultiSingleAvail\HotelReference;
-use Amadeus\Client\RequestOptions\Hotel\MultiSingleAvail\Rates;
-use Amadeus\Client\RequestOptions\Hotel\MultiSingleAvail\Room;
-use Amadeus\Client\RequestOptions\Hotel\MultiSingleAvail\Segment;
-use Amadeus\Client\RequestOptions\HotelMultiSingleAvailOptions;
+use Amadeus\Client\RequestOptions\Hotel\Avail\Criteria;
+use Amadeus\Client\RequestOptions\Hotel\Avail\Guest;
+use Amadeus\Client\RequestOptions\Hotel\Avail\HotelReference;
+use Amadeus\Client\RequestOptions\Hotel\Avail\Rates;
+use Amadeus\Client\RequestOptions\Hotel\Avail\Room;
+use Amadeus\Client\RequestOptions\Hotel\Avail\Segment;
+use Amadeus\Client\RequestOptions\HotelAvailOptions;
 use Amadeus\Client\Struct\Hotel\MultiSingleAvailability;
 use Test\Amadeus\BaseTestCase;
 
@@ -42,7 +42,7 @@ class HotelMultiSingleAvailabilityTest extends BaseTestCase
 {
     public function testCanMakeMessage()
     {
-        $opt = new HotelMultiSingleAvailOptions([
+        $opt = new HotelAvailOptions([
             'segments' => [
                 new Segment([
                     'infoSource' => Segment::SOURCE_DISTRIBUTION,

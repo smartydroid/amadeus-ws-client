@@ -55,7 +55,7 @@ class HotelReference extends LoadParamsFromArray
     /**
     * @var string
     */
-    public $bandCode;
+    public $brandCode;
 
     /**
      * @var string
