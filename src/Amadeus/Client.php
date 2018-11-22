@@ -1491,15 +1491,47 @@ class Client extends Base
     /**
      * Hotel_MultiSingleAvailability
      *
-     * @param RequestOptions\HotelMultiSingleAvailOptions $options
+     * @param RequestOptions\HotelAvailOptions $options
      * @param array $messageOptions (OPTIONAL)
      * @return Result
      */
     public function hotelMultiSingleAvailability(
-        RequestOptions\HotelMultiSingleAvailOptions $options,
+        RequestOptions\HotelAvailOptions $options,
         $messageOptions = []
     ) {
         $msgName = 'Hotel_MultiSingleAvailability';
+
+        return $this->callMessage($msgName, $options, $messageOptions);
+    }
+
+    /**
+     * Hotel_MultiAvailability
+     *
+     * @param RequestOptions\HotelAvailOptions $options
+     * @param array $messageOptions (OPTIONAL)
+     * @return Result
+     */
+    public function hotelMultiAvailability(
+        RequestOptions\HotelAvailOptions $options,
+        $messageOptions = []
+    ) {
+        $msgName = 'Hotel_MultiAvailability';
+
+        return $this->callMessage($msgName, $options, $messageOptions);
+    }
+
+    /**
+     * Hotel_EnhancedPricing
+     *
+     * @param RequestOptions\HotelAvailOptions $options
+     * @param array $messageOptions (OPTIONAL)
+     * @return Result
+     */
+    public function hotelEnhancedPricing(
+        RequestOptions\HotelAvailOptions $options,
+        $messageOptions = []
+    ) {
+        $msgName = 'Hotel_EnhancedPricing';
 
         return $this->callMessage($msgName, $options, $messageOptions);
     }

@@ -22,33 +22,12 @@
 
 namespace Amadeus\Client\ResponseHandler\Hotel;
 
-use Amadeus\Client\ResponseHandler\StandardResponseHandler;
-use Amadeus\Client\Result;
-use Amadeus\Client\Session\Handler\SendResult;
-
 /**
  * Hotel_MultiSingleAvailability Response Handler
  *
  * @package Amadeus\Client\ResponseHandler\Hotel
  * @author Dieter Devlieghere <dieter.devlieghere@benelux.amadeus.com>
  */
-class HandlerMultiSingleAvailability extends StandardResponseHandler
+class HandlerMultiSingleAvailability extends HandlerAvailability
 {
-    const Q_ERR_CODE = "/m:OTA_HotelAvailRS/m:Errors/m:Error/@Code";
-    const Q_ERR_SRC = "/m:OTA_HotelAvailRS/m:Errors/m:Error/@Status";
-    const Q_ERR_MSG = "/m:OTA_HotelAvailRS/m:Errors/m:Error/@ShortText";
-
-    /**
-     * @param SendResult $response
-     * @return Result
-     */
-    public function analyze(SendResult $response)
-    {
-        return $this->analyzeWithErrorCodeMsgQuerySource(
-            $response,
-            self::Q_ERR_CODE,
-            self::Q_ERR_MSG,
-            self::Q_ERR_SRC
-        );
-    }
 }

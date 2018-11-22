@@ -20,18 +20,44 @@
  * @license https://opensource.org/licenses/Apache-2.0 Apache 2.0
  */
 
-namespace Amadeus\Client\Struct\Hotel;
+namespace Amadeus\Client\Struct\Hotel\Avail;
+
+use Amadeus\Client\RequestOptions\Hotel\Avail\Segment;
 
 /**
- * Hotel_MultiSingleAvailability request structure
+ * AvailRequestSegment
  *
- * @package Amadeus\Client\Struct\Hotel
+ * @package Amadeus\Client\Struct\Hotel\Avail
  * @author Dieter Devlieghere <dieter.devlieghere@benelux.amadeus.com>
  */
-class MultiSingleAvailability extends Availability
+class AvailRequestSegment
 {
+    /**
+     * @var HotelSearchCriteria
+     */
+    public $HotelSearchCriteria;
+
     /**
      * @var string
      */
-    public $EchoToken = 'MultiSingle';
+    public $InfoSource;
+
+    public $MoreDataEchoToken;
+
+    /**
+     * AvailRequestSegment constructor.
+     *
+     * @param Segment|null $segment
+     */
+    public function __construct($segment = null)
+    {
+        if ($segment instanceof Segment) {
+            $this->InfoSource = $segment->infoSource;
+            $this->HotelSearchCriteria = new HotelSearchCriteria(
+                $segment->criteria,
+                $segment->bestOnly,
+                $segment->availableOnly
+            );
+        }
+    }
 }

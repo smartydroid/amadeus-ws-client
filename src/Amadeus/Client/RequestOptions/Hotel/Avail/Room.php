@@ -20,18 +20,41 @@
  * @license https://opensource.org/licenses/Apache-2.0 Apache 2.0
  */
 
-namespace Amadeus\Client\Struct\Hotel;
+namespace Amadeus\Client\RequestOptions\Hotel\Avail;
+
+use Amadeus\Client\LoadParamsFromArray;
 
 /**
- * Hotel_MultiSingleAvailability request structure
+ * Room
  *
- * @package Amadeus\Client\Struct\Hotel
+ * @package Amadeus\Client\RequestOptions\Hotel\Avail
  * @author Dieter Devlieghere <dieter.devlieghere@benelux.amadeus.com>
  */
-class MultiSingleAvailability extends Availability
+class Room extends LoadParamsFromArray
 {
     /**
-     * @var string
+     * Your unique ID for this room request
+     *
+     * @var int
      */
-    public $EchoToken = 'MultiSingle';
+    public $id;
+
+    /**
+     * How many rooms?
+     *
+     * @var int
+     */
+    public $amount;
+
+    /**
+     * All guests share the same room?
+     *
+     * @var bool
+     */
+    public $guestsIsPerRoom = true;
+
+    /**
+     * @var Guest[]
+     */
+    public $guests = [];
 }

@@ -23,15 +23,15 @@
 namespace Amadeus\Client\Struct\Hotel;
 
 /**
- * Hotel_MultiSingleAvailability request structure
+ * Hotel_EnhancedPricing request structure
  *
  * @package Amadeus\Client\Struct\Hotel
  * @author Dieter Devlieghere <dieter.devlieghere@benelux.amadeus.com>
  */
-class MultiSingleAvailability extends Availability
+class EnhancedPricing extends Availability
 {
     /**
      * @var string
      */
-    public $EchoToken = 'MultiSingle';
+    public $EchoToken = 'Pricing';
 }

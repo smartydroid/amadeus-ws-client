@@ -20,18 +20,18 @@
  * @license https://opensource.org/licenses/Apache-2.0 Apache 2.0
  */
 
-namespace Amadeus\Client\Struct\Hotel;
+namespace Amadeus\Client\Struct\Hotel\Avail;
 
 /**
- * Hotel_MultiSingleAvailability request structure
+ * RoomStayCandidates
  *
- * @package Amadeus\Client\Struct\Hotel
+ * @package Amadeus\Client\Struct\Hotel\Avail
  * @author Dieter Devlieghere <dieter.devlieghere@benelux.amadeus.com>
  */
-class MultiSingleAvailability extends Availability
+class RoomStayCandidates
 {
     /**
-     * @var string
+     * @var RoomStayCandidate[]
      */
-    public $EchoToken = 'MultiSingle';
+    public $RoomStayCandidate = [];
 }

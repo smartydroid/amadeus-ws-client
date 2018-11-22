@@ -20,18 +20,27 @@
  * @license https://opensource.org/licenses/Apache-2.0 Apache 2.0
  */
 
-namespace Amadeus\Client\Struct\Hotel;
+namespace Amadeus\Client\RequestCreator\Converter\Hotel;
+
+use Amadeus\Client\RequestCreator\Converter\BaseConverter;
+use Amadeus\Client\RequestOptions\HotelAvailOptions;
+use Amadeus\Client\Struct;
 
 /**
- * Hotel_MultiSingleAvailability request structure
+ * Hotel_EnhancedPricing request converter
  *
- * @package Amadeus\Client\Struct\Hotel
+ * @package Amadeus\Client\RequestCreator\Converter\Hotel
  * @author Dieter Devlieghere <dieter.devlieghere@benelux.amadeus.com>
  */
-class MultiSingleAvailability extends Availability
+class EnhancedPricingConv extends BaseConverter
 {
     /**
-     * @var string
+     * @param HotelAvailOptions $requestOptions
+     * @param int|string $version
+     * @return Struct\Hotel\EnhancedPricing
      */
-    public $EchoToken = 'MultiSingle';
+    public function convert($requestOptions, $version)
+    {
+        return new Struct\Hotel\EnhancedPricing($requestOptions);
+    }
 }

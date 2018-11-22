@@ -20,27 +20,35 @@
  * @license https://opensource.org/licenses/Apache-2.0 Apache 2.0
  */
 
-namespace Amadeus\Client\RequestCreator\Converter\Hotel;
+namespace Amadeus\Client\ResponseHandler\Hotel;
 
-use Amadeus\Client\RequestCreator\Converter\BaseConverter;
-use Amadeus\Client\RequestOptions\HotelAvailOptions;
-use Amadeus\Client\Struct;
+use Amadeus\Client\ResponseHandler\StandardResponseHandler;
+use Amadeus\Client\Result;
+use Amadeus\Client\Session\Handler\SendResult;
 
 /**
- * Hotel_MultiSingleAvailability request converter
+ * OTA_HotelAvail Response Handler
  *
- * @package Amadeus\Client\RequestCreator\Converter\Hotel
+ * @package Amadeus\Client\ResponseHandler\Hotel
  * @author Dieter Devlieghere <dieter.devlieghere@benelux.amadeus.com>
  */
-class MultiSingleAvailabilityConv extends BaseConverter
+class HandlerAvailability extends StandardResponseHandler
 {
+    const Q_ERR_CODE = "/m:OTA_HotelAvailRS/m:Errors/m:Error/@Code";
+    const Q_ERR_SRC = "/m:OTA_HotelAvailRS/m:Errors/m:Error/@Status";
+    const Q_ERR_MSG = "/m:OTA_HotelAvailRS/m:Errors/m:Error/@ShortText";
+
     /**
-     * @param HotelAvailOptions $requestOptions
-     * @param int|string $version
-     * @return Struct\Hotel\MultiSingleAvailability
+     * @param SendResult $response
+     * @return Result
      */
-    public function convert($requestOptions, $version)
+    public function analyze(SendResult $response)
     {
-        return new Struct\Hotel\MultiSingleAvailability($requestOptions);
+        return $this->analyzeWithErrCodeAndMsgQueryFixedCat(
+            $response,
+            self::Q_ERR_CODE,
+            self::Q_ERR_MSG,
+            self::Q_ERR_SRC
+        );
     }
 }

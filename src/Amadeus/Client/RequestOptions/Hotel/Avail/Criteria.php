@@ -20,18 +20,54 @@
  * @license https://opensource.org/licenses/Apache-2.0 Apache 2.0
  */
 
-namespace Amadeus\Client\Struct\Hotel;
+namespace Amadeus\Client\RequestOptions\Hotel\Avail;
+
+use Amadeus\Client\LoadParamsFromArray;
 
 /**
- * Hotel_MultiSingleAvailability request structure
+ * Criteria
  *
- * @package Amadeus\Client\Struct\Hotel
+ * @package Amadeus\Client\RequestOptions\Hotel\Avail
  * @author Dieter Devlieghere <dieter.devlieghere@benelux.amadeus.com>
  */
-class MultiSingleAvailability extends Availability
+class Criteria extends LoadParamsFromArray
 {
+    const ALT_AVAIL_NEVER = "Never";
+
     /**
+     * @var bool
+     */
+    public $exactMatch;
+
+    /**
+     * @var HotelReference[]
+     */
+    public $hotelReferences = [];
+
+    /**
+     * @var \DateTime
+     */
+    public $stayStart;
+
+    /**
+     * @var \DateTime
+     */
+    public $stayEnd;
+
+    /**
+     * @var Rates[]
+     */
+    public $rates = [];
+
+    /**
+     * @var Room[]
+     */
+    public $rooms = [];
+
+    /**
+     * self::ALT_AVAIL_*
+     *
      * @var string
      */
-    public $EchoToken = 'MultiSingle';
+    public $alternateAvailability;
 }

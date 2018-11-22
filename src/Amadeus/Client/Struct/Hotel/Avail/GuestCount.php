@@ -20,18 +20,36 @@
  * @license https://opensource.org/licenses/Apache-2.0 Apache 2.0
  */
 
-namespace Amadeus\Client\Struct\Hotel;
+namespace Amadeus\Client\Struct\Hotel\Avail;
+
+use Amadeus\Client\RequestOptions\Hotel\Avail\Guest;
 
 /**
- * Hotel_MultiSingleAvailability request structure
+ * GuestCount
  *
- * @package Amadeus\Client\Struct\Hotel
+ * @package Amadeus\Client\Struct\Hotel\Avail
  * @author Dieter Devlieghere <dieter.devlieghere@benelux.amadeus.com>
  */
-class MultiSingleAvailability extends Availability
+class GuestCount
 {
+    public $AgeQualifyingCode;
+
+    public $Age;
+
+    public $Count;
+
+    public $AgeBucket;
+
+    public $ResGuestRPH;
+
     /**
-     * @var string
+     * GuestCount constructor.
+     *
+     * @param Guest $guest
      */
-    public $EchoToken = 'MultiSingle';
+    public function __construct(Guest $guest)
+    {
+        $this->AgeQualifyingCode = $guest->occupantCode;
+        $this->Count = $guest->amount;
+    }
 }

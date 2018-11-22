@@ -32,30 +32,30 @@ use Amadeus\Client\Session\MsgClassmap\LoadInterface;
  */
 class LoaderMultiSingleAvailability implements LoadInterface
 {
-    /**
-     * @param float|string $version
-     * @return array
-     */
-    public static function loadClassMapForMessage($version)
-    {
-        return [
-            'ota_2003_05:OTA_HotelAvailRQ' => 'Amadeus\Client\Struct\Hotel\MultiSingleAvailability',
-            'ota_2003_05:AvailRequestSegments' => 'Amadeus\Client\Struct\Hotel\MultiSingleAvailability\AvailRequestSegments',
-            'ota_2003_05:AvailRequestSegmentsType' => 'Amadeus\Client\Struct\Hotel\MultiSingleAvailability\AvailRequestSegmentsType',
-            'ota_2003_05:AvailRequestSegment' => 'Amadeus\Client\Struct\Hotel\MultiSingleAvailability\AvailRequestSegment',
-            'ota_2003_05:Criterion' => 'Amadeus\Client\Struct\Hotel\MultiSingleAvailability\Criterion',
-            'ota_2003_05:HotelSearchCriterionType' => 'Amadeus\Client\Struct\Hotel\MultiSingleAvailability\HotelSearchCriterionType',
-            'ota_2003_05:ItemSearchCriterionType' => 'Amadeus\Client\Struct\Hotel\MultiSingleAvailability\ItemSearchCriterionType',
-            'ota_2003_05:GuestCount' => 'Amadeus\Client\Struct\Hotel\MultiSingleAvailability\GuestCount',
-            'ota_2003_05:GuestCounts' => 'Amadeus\Client\Struct\Hotel\MultiSingleAvailability\GuestCounts',
-            'ota_2003_05:HotelRef' => 'Amadeus\Client\Struct\Hotel\MultiSingleAvailability\HotelRef',
-            'ota_2003_05:HotelSearchCriteria' => 'Amadeus\Client\Struct\Hotel\MultiSingleAvailability\HotelSearchCriteria',
-            'ota_2003_05:HotelSearchCriteriaType' => 'Amadeus\Client\Struct\Hotel\MultiSingleAvailability\HotelSearchCriteriaType',
-            'ota_2003_05:POS_Type' => 'Amadeus\Client\Struct\Hotel\MultiSingleAvailability\PosType',
-            'ota_2003_05:RateRange' => 'Amadeus\Client\Struct\Hotel\MultiSingleAvailability\RateRange',
-            'ota_2003_05:RoomStayCandidate' => 'Amadeus\Client\Struct\Hotel\MultiSingleAvailability\RoomStayCandidate',
-            'ota_2003_05:RoomStayCandidates' => 'Amadeus\Client\Struct\Hotel\MultiSingleAvailability\RoomStayCandidates',
-            'ota_2003_05:StayDateRange' => 'Amadeus\Client\Struct\Hotel\MultiSingleAvailability\StayDateRange'
-        ];
-    }
+  /**
+   * @param float|string $version
+   * @return array
+   */
+  public static function loadClassMapForMessage($version)
+  {
+    return [
+      'ota_2003_05:OTA_HotelAvailRQ'         => 'Amadeus\Client\Struct\Hotel\MultiSingleAvailability',
+      'ota_2003_05:AvailRequestSegments'     => 'Amadeus\Client\Struct\Hotel\Avail\AvailRequestSegments',
+      'ota_2003_05:AvailRequestSegmentsType' => 'Amadeus\Client\Struct\Hotel\Avail\AvailRequestSegmentsType',
+      'ota_2003_05:AvailRequestSegment'      => 'Amadeus\Client\Struct\Hotel\Avail\AvailRequestSegment',
+      'ota_2003_05:Criterion'                => 'Amadeus\Client\Struct\Hotel\Avail\Criterion',
+      'ota_2003_05:HotelSearchCriterionType' => 'Amadeus\Client\Struct\Hotel\Avail\HotelSearchCriterionType',
+      'ota_2003_05:ItemSearchCriterionType'  => 'Amadeus\Client\Struct\Hotel\Avail\ItemSearchCriterionType',
+      'ota_2003_05:GuestCount'               => 'Amadeus\Client\Struct\Hotel\Avail\GuestCount',
+      'ota_2003_05:GuestCounts'              => 'Amadeus\Client\Struct\Hotel\Avail\GuestCounts',
+      'ota_2003_05:HotelRef'                 => 'Amadeus\Client\Struct\Hotel\Avail\HotelRef',
+      'ota_2003_05:HotelSearchCriteria'      => 'Amadeus\Client\Struct\Hotel\Avail\HotelSearchCriteria',
+      'ota_2003_05:HotelSearchCriteriaType'  => 'Amadeus\Client\Struct\Hotel\Avail\HotelSearchCriteriaType',
+      'ota_2003_05:POS_Type'                 => 'Amadeus\Client\Struct\Hotel\Avail\PosType',
+      'ota_2003_05:RateRange'                => 'Amadeus\Client\Struct\Hotel\Avail\RateRange',
+      'ota_2003_05:RoomStayCandidate'        => 'Amadeus\Client\Struct\Hotel\Avail\RoomStayCandidate',
+      'ota_2003_05:RoomStayCandidates'       => 'Amadeus\Client\Struct\Hotel\Avail\RoomStayCandidates',
+      'ota_2003_05:StayDateRange'            => 'Amadeus\Client\Struct\Hotel\Avail\StayDateRange',
+    ];
+  }
 }

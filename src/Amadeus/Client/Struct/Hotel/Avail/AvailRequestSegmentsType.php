@@ -20,18 +20,23 @@
  * @license https://opensource.org/licenses/Apache-2.0 Apache 2.0
  */
 
-namespace Amadeus\Client\Struct\Hotel;
+namespace Amadeus\Client\Struct\Hotel\Avail;
 
 /**
- * Hotel_MultiSingleAvailability request structure
+ * AvailRequestSegmentsType
  *
- * @package Amadeus\Client\Struct\Hotel
+ * @package Amadeus\Client\Struct\Hotel\Avail
  * @author Dieter Devlieghere <dieter.devlieghere@benelux.amadeus.com>
  */
-class MultiSingleAvailability extends Availability
+class AvailRequestSegmentsType
 {
     /**
-     * @var string
+     * @var AvailRequestSegment[]
      */
-    public $EchoToken = 'MultiSingle';
+    public $AvailRequestSegment = [];
+
+    /**
+     * @var int
+     */
+    public $MaximumWaitTime;
 }

@@ -20,18 +20,14 @@
  * @license https://opensource.org/licenses/Apache-2.0 Apache 2.0
  */
 
-namespace Amadeus\Client\Struct\Hotel;
+namespace Amadeus\Client\ResponseHandler\Hotel;
 
 /**
- * Hotel_MultiSingleAvailability request structure
+ * Hotel_EnhancedPricing Response Handler
  *
- * @package Amadeus\Client\Struct\Hotel
+ * @package Amadeus\Client\ResponseHandler\Hotel
  * @author Dieter Devlieghere <dieter.devlieghere@benelux.amadeus.com>
  */
-class MultiSingleAvailability extends Availability
+class HandlerEnhancedPricing extends HandlerAvailability
 {
-    /**
-     * @var string
-     */
-    public $EchoToken = 'MultiSingle';
 }

@@ -20,18 +20,40 @@
  * @license https://opensource.org/licenses/Apache-2.0 Apache 2.0
  */
 
-namespace Amadeus\Client\Struct\Hotel;
+namespace Amadeus\Client\RequestOptions\Hotel\Avail;
+
+use Amadeus\Client\LoadParamsFromArray;
 
 /**
- * Hotel_MultiSingleAvailability request structure
+ * HotelReference
  *
- * @package Amadeus\Client\Struct\Hotel
+ * @package Amadeus\Client\RequestOptions\Hotel\Avail
  * @author Dieter Devlieghere <dieter.devlieghere@benelux.amadeus.com>
  */
-class MultiSingleAvailability extends Availability
+class HotelReference extends LoadParamsFromArray
 {
     /**
      * @var string
      */
-    public $EchoToken = 'MultiSingle';
+    public $chainCode;
+
+    /**
+     * @var string
+     */
+    public $cityCode;
+
+    /**
+     * @var string
+     */
+    public $name;
+
+    /**
+     * @var string
+     */
+    public $hotelCode;
+
+    /**
+     * @var string
+     */
+    public $codeContext;
 }

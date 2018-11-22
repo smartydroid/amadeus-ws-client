@@ -20,18 +20,41 @@
  * @license https://opensource.org/licenses/Apache-2.0 Apache 2.0
  */
 
-namespace Amadeus\Client\Struct\Hotel;
+namespace Amadeus\Client\RequestOptions\Hotel\Avail;
+
+use Amadeus\Client\LoadParamsFromArray;
 
 /**
- * Hotel_MultiSingleAvailability request structure
+ * Segment
  *
- * @package Amadeus\Client\Struct\Hotel
+ * @package Amadeus\Client\RequestOptions\Hotel\Avail
  * @author Dieter Devlieghere <dieter.devlieghere@benelux.amadeus.com>
  */
-class MultiSingleAvailability extends Availability
+class Segment extends LoadParamsFromArray
 {
+    const SOURCE_LEISURE = "Leisure";
+    const SOURCE_DISTRIBUTION = "Distribution";
+    const SOURCE_MULTI_SOURCE = "MultiSource";
+
     /**
+     * self::SOURCE_*
+     *
      * @var string
      */
-    public $EchoToken = 'MultiSingle';
+    public $infoSource;
+
+    /**
+     * @var bool
+     */
+    public $bestOnly;
+
+    /**
+     * @var bool
+     */
+    public $availableOnly;
+
+    /**
+     * @var Criteria[]
+     */
+    public $criteria = [];
 }

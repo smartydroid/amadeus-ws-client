@@ -20,18 +20,43 @@
  * @license https://opensource.org/licenses/Apache-2.0 Apache 2.0
  */
 
-namespace Amadeus\Client\Struct\Hotel;
+namespace Amadeus\Client\Struct\Hotel\Avail;
+
+use Amadeus\Client\RequestOptions\Hotel\Avail\Room;
 
 /**
- * Hotel_MultiSingleAvailability request structure
+ * RoomStayCandidate
  *
- * @package Amadeus\Client\Struct\Hotel
+ * @package Amadeus\Client\Struct\Hotel\Avail
  * @author Dieter Devlieghere <dieter.devlieghere@benelux.amadeus.com>
  */
-class MultiSingleAvailability extends Availability
+class RoomStayCandidate
 {
     /**
-     * @var string
+     * @var int
      */
-    public $EchoToken = 'MultiSingle';
+    public $RoomID;
+
+    /**
+     * @var int
+     */
+    public $Quantity;
+
+    /**
+     * @var GuestCounts
+     */
+    public $GuestCounts;
+
+    /**
+     * RoomStayCandidate constructor.
+     *
+     * @param Room $room
+     */
+    public function __construct(Room $room)
+    {
+        $this->RoomID = $room->id;
+        $this->Quantity = $room->amount;
+
+        $this->GuestCounts = new GuestCounts($room->guestsIsPerRoom, $room->guests);
+    }
 }
