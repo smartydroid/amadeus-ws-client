@@ -47,6 +47,11 @@ class Room extends LoadParamsFromArray
     public $amount;
 
     /**
+    * @var string
+    */
+    public $bookingCode;
+
+    /**
      * All guests share the same room?
      *
      * @var bool
