@@ -77,6 +77,8 @@
 
 # Release 1.3.1 (5 May 2017)
 * Loosened psr/log dependency to allow installation with Yii2 (https://github.com/amabnl/amadeus-ws-client/issues/73)
+* Implemented ``Hotel_MultiSingleAvailability``
+* Implemented ``Hotel_Sell``
 
 # Release 1.3.0 (5 April 2017)
 * Added support for Multiple Office ID's in ``Fare_MasterPricerTravelBoardSearch`` (https://github.com/amabnl/amadeus-ws-client/pull/44) - Michal Hernas
@@ -121,6 +123,7 @@
 * Implemented ``PNR_NameChange`` message
 * Implemented ``FOP_CreateFormOfPayment`` message
 * Implemented ``PointOfRef_Search`` message
+* Implemented ``Hotel_Sell`` message
 * Request Creator split up in 1 dedicated class per message.
 * Response Handler split up in 1 dedicated class per message.
 
