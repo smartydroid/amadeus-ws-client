@@ -3982,61 +3982,6 @@ class ClientTest extends BaseTestCase
         $this->assertEquals($messageResult, $response);
     }
 
-    public function testCanDoSignOutCall()
-    {
-        $mockSessionHandler = $this->getMockBuilder('Amadeus\Client\Session\Handler\HandlerInterface')->getMock();
-
-        $mockedSendResult = new Client\Session\Handler\SendResult();
-        $mockedSendResult->responseXml = 'dummyfarepricepnrwithlowerfaresv12message';
-
-        $messageResult = new Client\Result($mockedSendResult);
-
-        $expectedMessageResult = new Client\Struct\Fare\PricePNRWithLowerFares12(
-            new Client\RequestOptions\FarePricePnrWithLowerFaresOptions([
-                'validatingCarrier' => 'SN'
-            ])
-        );
-
-        $mockSessionHandler
-            ->expects($this->once())
-            ->method('sendMessage')
-            ->with('Fare_PricePNRWithLowerFares', $expectedMessageResult, ['endSession' => false, 'returnXml' => true])
-            ->will($this->returnValue($mockedSendResult));
-        $mockSessionHandler
-            ->expects($this->never())
-            ->method('getLastResponse');
-        $mockSessionHandler
-            ->expects($this->once())
-            ->method('getMessagesAndVersions')
-            ->will($this->returnValue(['Fare_PricePNRWithLowerFares' => ['version' => "12.4", 'wsdl' => 'dc22e4ee']]));
-
-        $mockResponseHandler = $this->getMockBuilder('Amadeus\Client\ResponseHandler\ResponseHandlerInterface')->getMock();
-
-        $mockResponseHandler
-            ->expects($this->once())
-            ->method('analyzeResponse')
-            ->with($mockedSendResult, 'Fare_PricePNRWithLowerFares')
-            ->will($this->returnValue($messageResult));
-
-        $par = new Params();
-        $par->sessionHandler = $mockSessionHandler;
-        $par->requestCreatorParams = new Params\RequestCreatorParams([
-            'receivedFrom' => 'some RF string',
-            'originatorOfficeId' => 'BRUXXXXXX'
-        ]);
-        $par->responseHandler = $mockResponseHandler;
-
-        $client = new Client($par);
-
-        $response = $client->farePricePnrWithLowerFares(
-            new Client\RequestOptions\FarePricePnrWithLowerFaresOptions([
-                'validatingCarrier' => 'SN'
-            ])
-        );
-
-        $this->assertEquals($messageResult, $response);
-    }
-
     public function testCanFarePricePnrWithLowestFare14()
     {
         $mockSessionHandler = $this->getMockBuilder('Amadeus\Client\Session\Handler\HandlerInterface')->getMock();
