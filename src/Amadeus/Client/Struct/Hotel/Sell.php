@@ -32,6 +32,12 @@ use Amadeus\Client\Struct\Hotel\Sell\GroupIndicator;
 use Amadeus\Client\Struct\Hotel\Sell\RoomStayData;
 use Amadeus\Client\Struct\Hotel\Sell\SystemIdentifier;
 use Amadeus\Client\Struct\Hotel\Sell\TravelAgentRef;
+use Amadeus\Client\Struct\Hotel\Sell\StatusDetails;
+use Amadeus\Client\Struct\Offer\ConfirmHotel\BookingSource;
+use Amadeus\Client\Struct\Offer\ConfirmHotel\GlobalBookingInfo;
+use Amadeus\Client\Struct\Offer\ConfirmHotel\GuaranteeOrDeposit;
+use Amadeus\Client\Struct\Offer\ConfirmHotel\RoomList;
+use Amadeus\Client\Struct\Offer\ConfirmHotel\TattooReference;
 use Amadeus\Client\Struct\Pnr\ReservationInfo;
 
 /**
@@ -42,58 +48,86 @@ use Amadeus\Client\Struct\Pnr\ReservationInfo;
  */
 class Sell extends BaseWsMessage
 {
-    /**
-     * @var SystemIdentifier
-     */
-    public $systemIdentifier;
+  /**
+   * @var SystemIdentifier
+   */
+  public $systemIdentifier;
 
-    /**
-     * @var BookingCompany[]
-     */
-    public $bookingCompany = [];
+  /**
+   * @var BookingCompany[]
+   */
+  public $bookingCompany = [];
 
-    /**
-     * @var ReservationInfo
-     */
-    public $reservationInfo;
+  /**
+   * @var ReservationInfo
+   */
+  public $reservationInfo;
 
-    /**
-     * @var ExtraIndentification
-     */
-    public $extraIndentification;
+  /**
+   * @var ExtraIndentification
+   */
+  public $extraIndentification;
 
-    /**
-     * @var GroupIndicator
-     */
-    public $groupIndicator;
+  /**
+   * @var GroupIndicator
+   */
+  public $groupIndicator;
 
-    /**
-     * @var TravelAgentRef[]
-     */
-    public $travelAgentRef = [];
+  /**
+   * @var TravelAgentRef[]
+   */
+  public $travelAgentRef = [];
 
-    /**
-     * @var BookingPayerDetails
-     */
-    public $bookingPayerDetails;
+  /**
+   * @var BookingPayerDetails
+   */
+  public $bookingPayerDetails;
 
-    /**
-     * @var RoomStayData[]
-     */
-    public $roomStayData = [];
+  /**
+   * @var RoomStayData[]
+   */
+  public $roomStayData = [];
 
-    /**
-     * @var ArrivalFlightDetailsGrp
-     */
-    public $arrivalFlightDetailsGrp;
+  /**
+   * @var ArrivalFlightDetailsGrp
+   */
+  public $arrivalFlightDetailsGrp;
 
-    /**
-     * Hotel_Sell constructor.
-     *
-     * @param HotelSellOptions $options
-     */
-    public function __construct(HotelSellOptions $options)
-    {
-        //TODO
+  /**
+   * Hotel_Sell constructor.
+   *
+   * @param HotelSellOptions $options
+   */
+  public function __construct(HotelSellOptions $options)
+  {
+    if (!empty($options->deliveringSystem)) {
+      $this->systemIdentifier = new SystemIdentifier($options->deliveringSystem);
     }
+
+    if (!empty($options->statusDetailIndicator) && !empty($options->statusDetailAction)) {
+      $this->groupIndicator = new GroupIndicator($options->statusDetailIndicator, $options->statusDetailAction);
+    }
+
+    $this->travelAgentRef[] = new TravelAgentRef(TravelAgentRef::REFERENCE_EMAIL, 1);
+
+    $this->loadRoomStayData($options);
+  }
+
+  protected function loadRoomStayData(HotelSellOptions $options)
+  {
+    $this->makeRoomStayData();
+    $this->roomStayData[0]->globalBookingInfo = new GlobalBookingInfo([1]);
+
+    $this->roomStayData[0]->globalBookingInfo->bookingSource = new BookingSource('12345675');
+
+    $this->roomStayData[0]->roomList[] = new RoomList();
+    $this->roomStayData[0]->roomList[0]->guaranteeOrDeposit = new GuaranteeOrDeposit();
+  }
+
+  protected function makeRoomStayData()
+  {
+    if (!isset($this->roomStayData[0])) {
+      $this->roomStayData[] = new RoomStayData();
+    }
+  }
 }
