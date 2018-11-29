@@ -36,8 +36,14 @@ use Amadeus\Client\Struct\Hotel\Sell\StatusDetails;
 use Amadeus\Client\Struct\Offer\ConfirmHotel\BookingSource;
 use Amadeus\Client\Struct\Offer\ConfirmHotel\GlobalBookingInfo;
 use Amadeus\Client\Struct\Offer\ConfirmHotel\GuaranteeOrDeposit;
+use Amadeus\Client\Struct\Offer\ConfirmHotel\HotelProductReference;
+use Amadeus\Client\Struct\Offer\ConfirmHotel\OccupantList;
+use Amadeus\Client\Struct\Offer\ConfirmHotel\ReferenceDetails;
+use Amadeus\Client\Struct\Offer\ConfirmHotel\RepresentativeParties;
 use Amadeus\Client\Struct\Offer\ConfirmHotel\RoomList;
+use Amadeus\Client\Struct\Offer\ConfirmHotel\RoomRateDetails;
 use Amadeus\Client\Struct\Offer\ConfirmHotel\TattooReference;
+use Amadeus\Client\Struct\Offer\PassengerReference;
 use Amadeus\Client\Struct\Pnr\ReservationInfo;
 
 /**
@@ -122,6 +128,22 @@ class Sell extends BaseWsMessage
 
     $this->roomStayData[0]->roomList[] = new RoomList();
     $this->roomStayData[0]->roomList[0]->guaranteeOrDeposit = new GuaranteeOrDeposit();
+    $this->roomStayData[0]->roomList[0]->roomRateDetails = new RoomRateDetails();
+
+    $hotelProductReference = new HotelProductReference();
+    $referenceDetails = new ReferenceDetails(ReferenceDetails::TYPE_BOOKING_CODE, '00000001');
+    $hotelProductReference->referenceDetails = $referenceDetails;
+    $this->roomStayData[0]->roomList[0]->roomRateDetails->hotelProductReference[0] = $hotelProductReference;
+
+    $representativeParties = [];
+    $tmp = new RepresentativeParties();
+    $tmp->occupantList = new OccupantList(
+      1,
+      PassengerReference::TYPE_ROOM_MAIN_OCCUPANT
+    );
+    $representativeParties[] = $tmp;
+
+    $this->roomStayData[0]->roomList[0]->guestList = $representativeParties;
   }
 
   protected function makeRoomStayData()

@@ -28,7 +28,7 @@ namespace Amadeus\Client\Struct\Hotel\Sell;
  * @package Amadeus\Client\Struct\Hotel\Sell
  * @author Dieter Devlieghere <dieter.devlieghere@benelux.amadeus.com>
  */
-class ReferenceDetails
+class ReferenceDetails 
 {
     /**
      * @var string
