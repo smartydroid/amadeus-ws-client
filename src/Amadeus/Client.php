@@ -133,6 +133,11 @@ class Client extends Base
         return $this->sessionHandler->getLastResponse($this->lastMessage);
     }
 
+    public function getCreationString()
+    {
+      return $this->sessionHandler->getCreationString();
+    }
+
     /**
      * Get the request headers for the last SOAP message that was sent out
      *

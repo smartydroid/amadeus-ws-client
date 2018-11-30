@@ -62,6 +62,8 @@ class SoapHeader4 extends Base
      */
     protected $consumerId;
 
+    protected $creationString;
+
     /**
      * @param bool $stateful
      */
@@ -491,7 +493,9 @@ class SoapHeader4 extends Base
     {
         $creationDateTime->setTimezone(new \DateTimeZone('UTC'));
 
-        return $creationDateTime->format("Y-m-d\TH:i:s:") . $micro . 'Z';
+        $this->creationString = $creationDateTime->format("Y-m-d\TH:i:s:") . $micro . 'Z';
+
+        return $this->creationString;
     }
 
     /**
@@ -524,5 +528,10 @@ class SoapHeader4 extends Base
     protected function isNotSecurityAuthenticateMessage($messageName)
     {
         return 'Security_Authenticate' !== $messageName;
+    }
+
+    public function getCreationString()
+    {
+      return $this->creationString;
     }
 }

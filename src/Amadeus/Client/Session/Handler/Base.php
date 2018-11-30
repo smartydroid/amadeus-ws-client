@@ -280,7 +280,12 @@ abstract class Base implements HandlerInterface, LoggerAwareInterface
         );
     }
 
-    /**
+    public function getCreationString()
+    {
+      return null;
+    }
+
+  /**
      * Get the request headers for the last SOAP message that was sent out
      *
      * @param string $msgName
